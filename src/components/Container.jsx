@@ -28,7 +28,7 @@ function Container() {
 
   useEffect(() => {
     (async () => {
-      const res = await fetch("http://localhost:4000/");
+      const res = await fetch("https://shopnow12.herokuapp.com/");
       const data = await res.json();
       setApiData(data);
     })();
