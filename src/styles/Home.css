@@ -1,0 +1,40 @@
+.home__background {
+  margin: 0 30px;
+  border-radius: 30px;
+  background: radial-gradient(
+    circle at center,
+    #fea33f,
+    #fdc223,
+    #fdbc0b,
+    #fdc61f
+  );
+  height: 200px;
+  z-index: -1;
+  margin-bottom: -150px;
+}
+
+.home {
+  overflow: hidden;
+  height: 100%;
+}
+
+.home__container {
+  position: relative;
+  overflow: scroll;
+  z-index: 1;
+  height: 75%;
+}
+
+.home__container::-webkit-scrollbar {
+  display: none;
+}
+
+.home__row {
+  display: flex;
+}
+
+@media only screen and (max-width: 700px) {
+  .home__row {
+    flex-wrap: wrap;
+  }
+}

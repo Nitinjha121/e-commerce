@@ -1,0 +1,43 @@
+.oneProduct {
+  padding: 20px;
+}
+
+.oneProduct__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.oneProduct img {
+  max-width: 300px;
+  height: 300px;
+}
+
+.oneProduct__info {
+  flex: 1;
+  text-align: center;
+}
+
+.btn__cart {
+  width: 25px;
+  height: 25px;
+  font-size: 20px;
+  outline: none;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #e0e9f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.oneProduct__addToCart {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-addToCart {
+  width: 23%;
+  padding: 5px;
+  border-radius: 0;
+  margin: 20px;
+}
