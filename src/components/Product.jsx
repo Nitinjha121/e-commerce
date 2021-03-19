@@ -8,11 +8,7 @@ function Product({ id, title, price, image, rating }) {
   return (
     <div className="product">
       <div className="product__cart">
-        <Link
-          className="nav__link"
-          to={`/products/${id}`}
-          // onClick={zoomOutHandler}
-        >
+        <Link className="nav__link" to={`/products/${id}`}>
           <ZoomOutMapIcon fontSize="large" className="nav__shoppingCart" />{" "}
         </Link>
         <ShoppingCartIcon fontSize="large" className="nav__shoppingCart" />

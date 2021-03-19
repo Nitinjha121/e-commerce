@@ -1,5 +1,5 @@
 .register {
-  height: 70%;
+  height: 75%;
   display: flex;
   justify-content: center;
 }
@@ -12,7 +12,7 @@
   height: 100%;
   font-weight: 500;
   font-size: 15px;
-  padding: 30px;
+  padding: 10px;
   border: 1px solid #ccc;
   /* text-align: center; */
 }
@@ -25,7 +25,8 @@
 
 .register__name,
 .register__email,
-.register__password {
+.register__password,
+.register__userName {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
@@ -43,13 +44,35 @@
   border: none;
 }
 
-.register p {
-  margin: 20px;
+.register__login {
+  margin: 10px;
 }
 
-@media only screen and (max-width: 768px) {
+.register__message {
+  margin: 0;
+}
+
+.register__warningMessage {
+  color: red;
+  font-weight: bold;
+}
+
+.register__hidden {
+  display: none;
+}
+
+@media only screen and (max-width: 800px) {
+  .register {
+    height: 82%;
+    overflow: scroll;
+  }
   .register__form {
     width: 80%;
+    padding: 5px;
+  }
+  .register__btn {
+    padding: 5px;
+    width: 50%;
   }
 }
 

@@ -1,33 +1,82 @@
 const express = require("express");
 const app = express();
-const { v4: uuidv4 } = require("uuid");
 const cors = require("cors");
-const mongoose = require("mongoose");
+const { Product } = require("./database");
+const { User } = require("./database");
+const bcrypt = require("bcrypt");
+const passport = require("passport");
+// const initializePassport = require("./passport-config");
+const flash = require("express-flash");
+const session = require("express-session");
 require("dotenv/config");
 
+// initializePassport(
+//   passport,
+//   async (email) => await User.find({ email: email }).exec(),
+//   async (id) => await User.findById(id).exec()
+// );
+
 // Middlewares
+app.use(express.static(__dirname + "/build"));
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(flash());
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET_KEY,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Inserting data
-const uri = process.env.DB_CONNECTION;
-mongoose
-  .connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Connected to db"))
-  .catch((err) => console.log(`you got an error ${err}`));
 
-const productSchema = new mongoose.Schema({
-  title: String,
-  price: Number,
-  image: String,
-  rating: Number,
+app.post(
+  "user/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true,
+  })
+);
+
+app.post("/user/register", async (req, res) => {
+  try {
+    const userFind = await User.find();
+
+    userFind.map((user) => {
+      if (user.email === req.body.email) {
+        res.json("Error");
+        throw new Error("User already registered");
+      }
+    });
+
+    const hashPassword = await bcrypt.hash(req.body.password, 10);
+
+    const user = new User({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+    });
+
+    user.save();
+
+    res.json("User Registerd");
+  } catch (err) {
+    console.log(err);
+  }
 });
 
-const Product = mongoose.model("Product", productSchema);
+app.get("/", (req, res) => {
+  console.log(Product, User, "");
+  res.sendFile(__dirname + "/build/index.html");
+});
 
-app.get("/", async (req, res) => {
+app.get("/api/products", async (req, res) => {
   try {
     const product = await Product.find();
     res.json(product);
@@ -37,7 +86,12 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/api/products", (req, res) => {});
+app.get("/products/:id", (req, res) => {
+  res.sendFile(__dirname + "/build/index.html");
+});
 
 app.post("/products");
 
-app.listen(4000, () => console.log("listening on port 4000"));
+app.listen(process.env.PORT || 4000, () =>
+  console.log("listening on port 4000")
+);

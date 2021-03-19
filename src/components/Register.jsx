@@ -2,30 +2,36 @@ import React from "react";
 import "../styles/Register.css";
 import { Link } from "react-router-dom";
 
-function Register() {
+function Register({ paraRef, formSubmit, formSection }) {
   return (
     <div className="register">
-      <form className="register__form">
-        <div className="register__name">
-          <label htmlFor="name"> Name</label>
-          <input type="text" id="name" />
-        </div>
-        <div className="register__email">
-          <label htmlFor="email">Email</label>
-          <input id="email" type="email" />
-        </div>
-        <div className="register__password">
-          <label htmlFor="password">Password</label>
-          <input id="password" type="password" />
-        </div>
+      <form method="post" className="register__form" onSubmit={formSubmit}>
+        {formSection.map((obj) => {
+          return (
+            <div className={`register__${obj.id}`} key={obj.id}>
+              <label htmlFor={obj.id}>{obj.name}</label>
+              <input
+                type="text"
+                id={obj.id}
+                onChange={(e) => obj.setHook(e.target.value)}
+              />
+              <p
+                ref={obj.ref}
+                className="register__hidden register__warningMessage"
+              >
+                * This field is required
+              </p>
+            </div>
+          );
+        })}
+
+        <p ref={paraRef} className="register__message"></p>
         <button className="btn register__btn">SignUp</button>
-        <p>
-          Already have an account?{" "}
-          <span>
-            <Link className="nav__link" to="/login">
-              Login
-            </Link>
-          </span>
+        <p className="register__login">
+          Already have an account?
+          <Link className="nav__link" to="/login">
+            Login
+          </Link>
         </p>
       </form>
     </div>

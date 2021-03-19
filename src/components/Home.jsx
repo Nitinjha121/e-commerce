@@ -4,6 +4,7 @@ import Product from "./Product";
 
 function Home({ apiData }) {
   const renderData = function (m, n = 0) {
+    if (apiData.length === 1) return apiData;
     return apiData.map((data, i) => {
       if (i >= m || i < n) return;
       return (

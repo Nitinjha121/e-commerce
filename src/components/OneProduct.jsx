@@ -23,6 +23,8 @@ function OneProduct({ product }) {
     console.log(cartPrize);
   };
 
+  if (product.type === "div") return product;
+
   return (
     <div className="oneProduct">
       <div className="oneProduct__container">
