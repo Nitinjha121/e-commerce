@@ -29,7 +29,7 @@ function Nav() {
     <nav className="nav">
       <div className="nav__logo">
         <Link className="nav__link" to="/">
-          ShopHub
+          ShopNow
         </Link>
       </div>
       <div className={`nav__container  ${navMenu ? "" : "short-hidden"}`}>
