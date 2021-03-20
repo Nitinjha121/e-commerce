@@ -3,24 +3,12 @@ import "../styles/Nav.css";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import MenuIcon from "@material-ui/icons/Menu";
 import ClearIcon from "@material-ui/icons/Clear";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Nav() {
   const [navMenu, setNavMenu] = useState(false);
-  const homeRef = useRef(null);
-  const cartRef = useRef(null);
-  const signupRef = useRef(null);
-  const navRefArr = [homeRef, cartRef, signupRef];
 
-  const {
-    location: { pathname },
-  } = useHistory();
-
-  // console.log()
-
-  useEffect(() => {
-    console.log(window.location);
-  }, [pathname]);
+  const { pathname } = useLocation();
 
   const clickHandler = () => {
     setNavMenu(!navMenu);
@@ -36,17 +24,19 @@ function Nav() {
         <div className="nav__option">
           <ul>
             <li>
-              <Link className={`nav__link`} ref={homeRef} to="/">
+              <Link
+                className="nav__link"
+                style={{ color: pathname === "/" ? "#ff9447" : "#000" }}
+                to="/"
+              >
                 Home
               </Link>
             </li>
             <li>
               <Link
-                className={`nav__link ${""}`}
+                className="nav__link"
                 style={{ color: pathname === "/cart" ? "#ff9447" : "#000" }}
-                ref={cartRef}
                 to="/cart"
-                ref={cartRef}
               >
                 <ShoppingCartIcon
                   fontSize="large"
@@ -60,11 +50,9 @@ function Nav() {
         </div>
         <div className="nav__account">
           <Link
-            className={`nav__link `}
-            style={{ color: pathname === "/signup" ? "#ff9447" : "#000" }}
-            ref={signupRef}
+            className="nav__link"
+            style={{ color: pathname === "/register" ? "#ff9447" : "#000" }}
             to="/register"
-            ref={signupRef}
           >
             SignUp
           </Link>
