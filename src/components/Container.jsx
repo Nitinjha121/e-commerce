@@ -17,7 +17,6 @@ function Container() {
 
   useEffect(() => {
     return history.listen((location) => {
-      console.log(location.pathname);
       setIdContainer(location.pathname.slice(10));
     });
   }, [history]);
@@ -60,6 +59,8 @@ function Container() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
+  // for data submission function
+
   const formSubmit = async function (e) {
     e.preventDefault();
 
@@ -82,10 +83,14 @@ function Container() {
       },
     ];
 
+    // checking any field is empty or not if empty then so this error message
+
     if (!name || !userName || !password || !email) {
-      return refArr.map(({ name, ref }) => {
+      return refArr.forEach(({ name, ref }) => {
         if (!name) {
           ref.current.classList.remove("register__hidden");
+        } else {
+          ref.current.classList.add("register__hidden");
         }
         // if(!nam )
       });
@@ -97,6 +102,8 @@ function Container() {
       password: password,
     };
 
+    // sending dara to backend
+
     const res = await fetch("http://localhost:4000/user/register", {
       method: "POST",
       body: JSON.stringify(formData),
@@ -106,6 +113,8 @@ function Container() {
     });
 
     const data = await res.json();
+
+    // creating error for if the account exist or not in our database
 
     if (data === "Error") {
       paraRef.current.innerHTML = "Your Account Already Exist In Our Database";

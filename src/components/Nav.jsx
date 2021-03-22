@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/Nav.css";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import MenuIcon from "@material-ui/icons/Menu";
