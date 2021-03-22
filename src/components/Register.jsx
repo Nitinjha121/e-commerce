@@ -11,7 +11,7 @@ function Register({ paraRef, formSubmit, formSection }) {
             <div className={`register__${obj.id}`} key={obj.id}>
               <label htmlFor={obj.id}>{obj.name}</label>
               <input
-                type="text"
+                type={obj.type}
                 id={obj.id}
                 onChange={(e) => obj.setHook(e.target.value)}
               />

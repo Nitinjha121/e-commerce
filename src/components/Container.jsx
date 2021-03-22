@@ -7,6 +7,7 @@ import Shop from "./Shop";
 import Register from "./Register";
 import Login from "./Login";
 import OneProduct from "./OneProduct.jsx";
+import axios from "axios";
 
 function Container() {
   // getting product ids
@@ -34,9 +35,8 @@ function Container() {
 
   useEffect(() => {
     (async () => {
-      const res = await fetch("http://localhost:4000/api/products");
-      const data = await res.json();
-      setApiData(data);
+      const data = await axios("api/products");
+      setApiData(data.data);
     })();
   }, []);
 
@@ -86,11 +86,11 @@ function Container() {
     // checking any field is empty or not if empty then so this error message
 
     if (!name || !userName || !password || !email) {
-      return refArr.forEach(({ name, ref }) => {
+      return refArr.map(({ name, ref }) => {
         if (!name) {
-          ref.current.classList.remove("register__hidden");
+          return ref.current.classList.remove("register__hidden");
         } else {
-          ref.current.classList.add("register__hidden");
+          return ref.current.classList.add("register__hidden");
         }
         // if(!nam )
       });
@@ -104,7 +104,7 @@ function Container() {
 
     // sending dara to backend
 
-    const res = await fetch("http://localhost:4000/user/register", {
+    const res = await fetch("user/register", {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {
