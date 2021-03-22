@@ -24,3 +24,4 @@ yarn-error.log*
 
 .env
 passport-config.js
+package-lock.json
