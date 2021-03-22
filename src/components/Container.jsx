@@ -17,6 +17,7 @@ function Container() {
 
   useEffect(() => {
     return history.listen((location) => {
+      console.log(location.pathname);
       setIdContainer(location.pathname.slice(10));
     });
   }, [history]);
