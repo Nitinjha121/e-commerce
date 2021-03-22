@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 const cors = require("cors");
 const { Product } = require("./database");
 const { User } = require("./database");
@@ -17,7 +18,7 @@ require("dotenv/config");
 // );
 
 // Middlewares
-app.use(express.static(__dirname + "/build"));
+app.use(express.static(path.join(__dirname, "build")));
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
