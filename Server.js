@@ -8,8 +8,8 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 // const initializePassport = require("./passport-config");
 const flash = require("express-flash");
-const session = require("express-session");
-require("dotenv/config");
+// const session = require("express-session");
+// require("dotenv/config");
 
 // initializePassport(
 //   passport,
@@ -23,13 +23,13 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(flash());
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET_KEY,
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET_KEY,
+//     resave: false,
+//     saveUninitialized: false,
+//   })
+// );
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -86,7 +86,7 @@ app.get("/api/products", async (req, res) => {
   }
 });
 
-app.get("/api/products", (req, res) => {});
+// app.get("/api/products", (req, res) => {});
 app.get("/products/:id", (req, res) => {
   res.sendFile(__dirname + "/build/index.html");
 });

@@ -35,8 +35,12 @@ function Container() {
 
   useEffect(() => {
     (async () => {
-      const data = await axios("api/products");
-      setApiData(data.data);
+      try {
+        const data = await axios.get("api/products");
+        setApiData(data.data);
+      } catch (err) {
+        console.log(`${err} 💥💥💥`);
+      }
     })();
   }, []);
 
@@ -92,7 +96,6 @@ function Container() {
         } else {
           return ref.current.classList.add("register__hidden");
         }
-        // if(!nam )
       });
     }
     const formData = {
