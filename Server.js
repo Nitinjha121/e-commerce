@@ -11,7 +11,7 @@ const flash = require("express-flash");
 // const session = require("express-session");
 require("dotenv/config");
 
-const port = process.env.port || 4000;
+const port = process.env.PORT || 4000;
 
 // initializePassport(
 //   passport,

@@ -3,34 +3,18 @@ const app = express();
 const cors = require("cors");
 const { Product } = require("./database");
 const { User } = require("./database");
-const bcrypt = require("bcrypt");
-const passport = require("passport");
-const flash = require("express-flash");
 require("dotenv/config");
 
 const PORT = process.env.PORT || 4000;
 
 // Middlewares
-// app.use(express.static(path.join(__dirname, "build")));
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(flash());
-
-// Inserting data
 
 app.get("/", (req, res) => {
   res.send("Got it");
 });
-
-app.post(
-  "user/login",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-    failureFlash: true,
-  })
-);
 
 app.post("/user/register", async (req, res) => {
   try {
@@ -42,8 +26,6 @@ app.post("/user/register", async (req, res) => {
         throw new Error("User already registered");
       }
     });
-
-    const hashPassword = await bcrypt.hash(req.body.password, 10);
 
     const user = new User({
       name: req.body.name,
