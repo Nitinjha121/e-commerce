@@ -1,7 +1,6 @@
 {
   "name": "6-ecommerce",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
@@ -22,10 +21,6 @@
       "react-app",
       "react-app/jest"
     ]
-  },
-  "engines": {
-    "node": "14.16.0",
-    "npm": "7.6.0"
   },
   "main": "Server.js",
   "keywords": [],
