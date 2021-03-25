@@ -20,7 +20,7 @@ const port = process.env.PORT || 4000;
 // );
 
 // Middlewares
-app.use(express.static(path.join(__dirname, "build")));
+
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -39,7 +39,11 @@ app.use(passport.session());
 // Inserting data
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/build/index.html");
+  res.sendFile(path.resolve(__dirname, "build", "index.html"));
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "build", "index.html"));
 });
 
 app.post(
@@ -93,5 +97,17 @@ app.get("/products/:id", (req, res) => {
 });
 
 app.post("/products");
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("build"));
+
+  app.get("/", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "build", "index.html"));
+  });
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "build", "index.html"));
+  });
+}
 
 app.listen(port, () => console.log("listening on port 4000"));
