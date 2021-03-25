@@ -9,7 +9,7 @@ const passport = require("passport");
 // const initializePassport = require("./passport-config");
 const flash = require("express-flash");
 // const session = require("express-session");
-// require("dotenv/config");
+require("dotenv/config");
 
 // initializePassport(
 //   passport,
@@ -73,7 +73,6 @@ app.post("/user/register", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  console.log(Product, User, "");
   res.sendFile(__dirname + "/build/index.html");
 });
 
