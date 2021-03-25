@@ -21,7 +21,7 @@ app.use(flash());
 // Inserting data
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/build/index.html");
+  res.send("Got it");
 });
 
 app.post(
