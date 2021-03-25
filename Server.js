@@ -11,6 +11,8 @@ const flash = require("express-flash");
 // const session = require("express-session");
 // require("dotenv/config");
 
+const port = process.env.PORT || 4000;
+
 // initializePassport(
 //   passport,
 //   async (email) => await User.find({ email: email }).exec(),
@@ -92,6 +94,4 @@ app.get("/products/:id", (req, res) => {
 
 app.post("/products");
 
-app.listen(process.env.PORT || 4000, () =>
-  console.log("listening on port 4000")
-);
+app.listen(port, () => console.log("listening on port 4000"));
