@@ -9,7 +9,7 @@ const passport = require("passport");
 // const initializePassport = require("./passport-config");
 const flash = require("express-flash");
 // const session = require("express-session");
-// require("dotenv/config");
+require("dotenv/config");
 
 const port = process.env.PORT || 4000;
 
