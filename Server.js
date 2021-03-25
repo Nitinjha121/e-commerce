@@ -9,7 +9,7 @@ const passport = require("passport");
 // const initializePassport = require("./passport-config");
 const flash = require("express-flash");
 // const session = require("express-session");
-require("dotenv/config");
+// require("dotenv/config");
 
 // initializePassport(
 //   passport,
@@ -35,6 +35,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Inserting data
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/build/index.html");
+});
 
 app.post(
   "user/login",
@@ -70,10 +74,6 @@ app.post("/user/register", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-});
-
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/build/index.html");
 });
 
 app.get("/api/products", async (req, res) => {
