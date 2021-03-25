@@ -15,14 +15,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Inserting data
+app.use(express.static(__dirname + "/build"));
 
-// app.get("/", (req, res) => {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/build/index.html");
+});
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 app.post("/user/register", async (req, res) => {
   try {
