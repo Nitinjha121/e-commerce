@@ -6,7 +6,7 @@ const { Product } = require("./database");
 const { User } = require("./database");
 require("dotenv/config");
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 8080;
 
 // Middlewares
 
