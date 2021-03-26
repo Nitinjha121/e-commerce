@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "../styles/Container.css";
 import Nav from "./Nav";
 import Home from "./Home";
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import Shop from "./Shop";
 import Register from "./Register";
 import Login from "./Login";
@@ -14,17 +14,17 @@ function Container() {
   // getting product ids
 
   const history = useHistory();
+  const { pathname } = useLocation();
 
   const [idContainer, setIdContainer] = useState("");
 
   useEffect(() => {
     return history.listen((location) => {
-      setIdContainer(location.pathname.slice(10));
+      setIdContainer(pathname.slice(10));
     });
   }, [history]);
-
   if (window.location.pathname.includes("products"))
-    if (!idContainer) setIdContainer(window.location.pathname.slice(10));
+    if (!idContainer) setIdContainer(pathname.slice(10));
 
   // fetching all products from database to show on home
 
