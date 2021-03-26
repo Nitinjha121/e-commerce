@@ -37,6 +37,7 @@ function Container() {
     (async () => {
       try {
         const data = await axios.get("/api/products");
+        console.log(data);
         setApiData(data.data);
       } catch (err) {
         console.log(`${err} 💥💥💥`);
