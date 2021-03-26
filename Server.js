@@ -21,10 +21,6 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/build/index.html");
 });
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
-
 app.post("/user/register", async (req, res) => {
   try {
     const userFind = await User.find();

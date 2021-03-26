@@ -76,10 +76,10 @@ li {
   }
 
   .short-hidden {
-    /* display: none; */
-    /* transition: all 1s; */
+    display: none;
+    transition: all 1s;
     opacity: 0;
-    transform: translateX(100%);
+    /* transform: translateX(100%); */
   }
   .nav {
     justify-content: space-between;

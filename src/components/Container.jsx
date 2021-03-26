@@ -7,7 +7,8 @@ import Shop from "./Shop";
 import Register from "./Register";
 import Login from "./Login";
 import OneProduct from "./OneProduct.jsx";
-import axios from "axios";
+// import axios from "axios";
+import { api } from "../apiData";
 
 function Container() {
   // getting product ids
@@ -36,9 +37,10 @@ function Container() {
   useEffect(() => {
     (async () => {
       try {
-        const data = await axios.get("/api/products");
-        console.log(data);
-        setApiData(data.data);
+        // const data = await axios.get("/api/products");
+        const data = api;
+        // setApiData(data.data);
+        setApiData(data);
       } catch (err) {
         console.log(`${err} 💥💥💥`);
       }
