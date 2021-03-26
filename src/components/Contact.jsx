@@ -42,7 +42,6 @@ function Contact() {
               name="message"
               placeholder="Message"
             ></textarea>
-            <h3 class="settled-message"></h3>
             <button class="btn btn-submit">Contact</button>
           </form>
         </div>
