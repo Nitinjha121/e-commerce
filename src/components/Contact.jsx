@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Contact.css";
 
+// contact form
 function Contact() {
   return (
     <div className="contact__form">
