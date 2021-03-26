@@ -45,7 +45,15 @@ function Nav() {
               </Link>
             </li>
 
-            <li>Contact</li>
+            <li>
+              <Link
+                className="nav__link"
+                style={{ color: pathname === "/contact" ? "#ff9447" : "#000" }}
+                to="/contact"
+              >
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="nav__account">

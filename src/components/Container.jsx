@@ -7,6 +7,7 @@ import Shop from "./Shop";
 import Register from "./Register";
 import Login from "./Login";
 import OneProduct from "./OneProduct.jsx";
+import Contact from "./Contact";
 // import axios from "axios";
 import { api } from "../apiData";
 
@@ -194,6 +195,9 @@ function Container() {
         </Route>
         <Route path={`/products/${idContainer}`}>
           <OneProduct product={product} />
+        </Route>
+        <Route path="/contact">
+          <Contact />
         </Route>
       </Switch>
     </div>
