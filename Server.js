@@ -21,9 +21,9 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/build/index.html");
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
 app.post("/user/register", async (req, res) => {
   try {
@@ -59,20 +59,25 @@ app.get("/api/products", async (req, res) => {
   }
 });
 
-// app.get("/products/:id", (req, res) => {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
+app.get("/products/api/products", async (req, res) => {
+  try {
+    const product = await Product.find();
+    res.json(product);
+  } catch (err) {
+    res.json(err);
+  }
+});
 
-app.post("/products");
+app.get("/products/:id", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
+// app.post("/products");
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("build"));
 
   app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "build", "index.html"));
-  });
-
-  app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "build", "index.html"));
   });
 }

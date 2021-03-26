@@ -36,7 +36,7 @@ function Container() {
   useEffect(() => {
     (async () => {
       try {
-        const data = await axios.get("api/products");
+        const data = await axios.get("/api/products");
         setApiData(data.data);
       } catch (err) {
         console.log(`${err} 💥💥💥`);
@@ -50,7 +50,6 @@ function Container() {
     if (data.type === "div") return data;
     return data._id === idContainer;
   });
-
   // Creating user registration
 
   const [name, setName] = useState("");
@@ -107,7 +106,7 @@ function Container() {
 
     // sending dara to backend
 
-    const res = await fetch("user/register", {
+    const res = await fetch("/user/register", {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {
