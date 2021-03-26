@@ -133,7 +133,7 @@ function Container() {
   };
 
   // Register Form Data
-
+  // this array decide how our form input work
   const formSection = [
     {
       id: "name",
