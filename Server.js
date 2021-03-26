@@ -74,12 +74,4 @@ app.get("/products/:id", (req, res) => {
 
 // app.post("/products");
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("build"));
-
-  app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "build", "index.html"));
-  });
-}
-
 app.listen(port, () => console.log("listening on port 4000"));
