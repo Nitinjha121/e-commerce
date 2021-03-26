@@ -20,9 +20,10 @@ function Container() {
 
   useEffect(() => {
     return history.listen((location) => {
-      setIdContainer(pathname.slice(10));
+      setIdContainer(location.pathname.slice(10));
     });
   }, [history]);
+
   if (window.location.pathname.includes("products"))
     if (!idContainer) setIdContainer(pathname.slice(10));
 
