@@ -16,7 +16,12 @@ body {
 .App {
   background: radial-gradient(circle, #ff9447, #fdd3b6);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+.rights {
+  text-align: center;
 }
